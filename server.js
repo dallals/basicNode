@@ -1,6 +1,7 @@
 const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
+const port = process.env.PORT || 8000;
 var app = express();
 
 hbs.registerPartials(__dirname + '/views/partials')
@@ -45,6 +46,12 @@ app.get('/about', (req, res) => {
 	});
 });
 
+app.get('/projects', (req, res) => {
+	res.render('projects.hbs', {
+		pageTitle: 'Projects Page',
+	});
+});
+
 app.get('/bad', (req, res) => {
 	res.send({
 		errorMessage: "Bad request"
@@ -52,6 +59,6 @@ app.get('/bad', (req, res) => {
 });
 
 
-app.listen(8000, () => {
-	console.log("server up on post 8000")
+app.listen(port, () => {
+	console.log(`server up on post ${port}`)
 });
